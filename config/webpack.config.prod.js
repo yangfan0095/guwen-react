@@ -27,6 +27,10 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 const publicUrl = publicPath.slice(0, -1);
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
+const extractLess = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    // disable: process.env.NODE_ENV === "development"
+});
 
 // Assert this just to be safe.
 // Development builds of React are slow and not intended for production.
@@ -117,14 +121,14 @@ module.exports = {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
         use: [
-          {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
+          // {
+          //   options: {
+          //     formatter: eslintFormatter,
+          //     eslintPath: require.resolve('eslint'),
               
-            },
-            loader: require.resolve('eslint-loader'),
-          },
+          //   },
+          //   loader: require.resolve('eslint-loader'),
+          // },
         ],
         include: paths.appSrc,
       },
@@ -212,6 +216,19 @@ module.exports = {
             ),
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
           },
+            {
+            test: /\.less$/,
+            use: extractLess.extract({
+                use: [{
+                    loader: require.resolve('css-loader')
+                }, {
+                    loader: require.resolve('less-loader')
+                }],
+                // use style-loader in development
+                fallback: require.resolve('style-loader')
+            })
+          },
+
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
           // This loader doesn't use a "test" so it will catch all modules
