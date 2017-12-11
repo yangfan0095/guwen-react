@@ -3,12 +3,18 @@ import PropTypes from 'prop-types'
 // import counter from './reducers';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { add, decrement } from './actions';
-import api from './services/api';
-import logo from './logo.svg';
+import { add, decrement } from '../actions';
+import api from '../services/api';
+import logo from '../logo.svg';
 import './home.less';
 
 class Home extends Component {
+  constructor(){
+		super();
+		this.state={
+			data:null
+		}
+	}
 
   addCount = () => {
     this.props.add();
