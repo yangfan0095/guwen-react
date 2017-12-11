@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 // import counter from './reducers';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { add, decrement } from '../actions';
-import api from '../services/api';
+import { add, decrement,fetchBookList } from '../actions';
 import logo from '../logo.svg';
 import './home.less';
 
@@ -20,55 +19,53 @@ class Home extends Component {
     this.props.add();
   }
   componentDidMount() {
-    axios.get(api.url.booklist).then((res) => {
-      
-    }).catch((err) => {
-      console.log(err.status);
-    })
+    this.props.fetchBookList({});
   }
   render() {
     const props = this.props;
     return (
       <div className="home">
-        <div className="title">create a react app</div>
-        <div>{props.count}</div>
-        <div onClick={this.addCount.bind(this)}>add</div>
-        <div onClick={props.decrement}>decrement</div>
+        <div className="title">古文目录</div>
+        <BookList booklist={ props.booklist }></BookList>
       </div>
     );
   }
 
 }
-/*const Home = (props) =>{
-   let  addCount =()=>{
-        props.add();
-    };
-     return (
-      <div className="home">
-        <div className="title">create a react app</div>
-        {console.log(props)}
-        <div>{props.count}</div>
-        <div onClick={addCount}>add</div>
-        <div onClick={props.decrement}>decrement</div>
+/**
+ * 数据目录 组件
+ * @param {*} param0 
+ */
+const BookList = ({booklist})=>(
+  <div className="book-list">
+  {
+    booklist.map((item,index) =>(
+      <div className="book-list-item" key= { 'bookindex' + index}>
+        <div className="name">{item.bookName}</div>
+        <div className="detail">{item.bookDetail}</div>
       </div>
-    );
-}*/
-
-
-
-
-
+    )
+    )
+  }
+  </div>
+)
 const mapStateToProps = (state) => ({
-  count: state.count,
+  count: state.counter,
+  booklist:state.booklist
 });
 const mapDispatchToProps = {
   add: add,
-  decrement: decrement
+  decrement: decrement,
+  fetchBookList:fetchBookList
 }
 
 
 Home.propTypes = {
-  count: PropTypes.number.isRequired
+  count: PropTypes.number.isRequired,
+  booklist:PropTypes.array.isRequired
+}
+BookList.propTypes= {
+  booklist:PropTypes.array.isRequired
 }
 
 export default connect(

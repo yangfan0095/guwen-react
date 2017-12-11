@@ -1,8 +1,14 @@
-import { combineReducers } from 'redux'
-import count from './count'
+import {
+    combineReducers
+} from 'redux'
+import {
+    counter,
+    booklist
+} from './count'
 
 const appReducer = combineReducers({
-    count,
+    counter,
+    booklist
 })
 
 export default appReducer

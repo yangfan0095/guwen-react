@@ -9,7 +9,7 @@
  * 下面例子使用 `switch` 语句和字符串来做判断，但你可以写帮助类(helper)
  * 根据不同的约定（如方法映射）来判断，只要适用你的项目即可。
  */
- const counter = (state = 10, action) => {
+const counter = (state = 10, action) => {
     switch (action.type) {
         case 'INCREMENT':
             return state + 1;
@@ -19,5 +19,18 @@
             return state;
     }
 };
+const booklist = (state = [], action) => {
 
-export default counter;
+    switch (action.type) {
+        case 'BOOKLIST':
+            state = action.data;
+            return state;
+        default:
+            return state;
+    }
+}
+
+export {
+    counter,
+    booklist
+};
