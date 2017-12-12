@@ -36,19 +36,22 @@ class Home extends Component {
  * 数据目录 组件
  * @param {*} param0 
  */
-const BookList = ({booklist})=>(
-  <div className="book-list">
-  {
-    booklist.map((item,index) =>(
-      <div className="book-list-item" key= { 'bookindex' + index}>
-        <div className="name">{item.bookName}</div>
-        <div className="detail">{item.bookDetail}</div>
-      </div>
-    )
-    )
-  }
-  </div>
-)
+const BookList = ({booklist})=>{
+
+  return (
+    <div className="book-list">
+    {
+      booklist.map((item,index) =>(
+        <div className="book-list-item" key= { 'bookindex' + index}>
+          <div className="name">{item.bookName}</div>
+          <div className="detail">{item.bookDetail}</div>
+        </div>
+      )
+      )
+    }
+    </div>
+  )
+}
 const mapStateToProps = (state) => ({
   count: state.counter,
   booklist:state.booklist

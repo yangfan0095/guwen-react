@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import BasicApp from './router';
 
 
 const store = createStore(
@@ -17,6 +18,6 @@ const store = createStore(
 
 ReactDOM.render(
 <Provider store={store}>
-    <App />
+    <BasicApp />
   </Provider>, document.getElementById('root'));
 registerServiceWorker();
