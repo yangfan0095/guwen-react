@@ -29,8 +29,19 @@ const booklist = (state = [], action) => {
             return state;
     }
 }
+const bookitem = (state = [], action) => {
+
+    switch (action.type) {
+        case 'BOOKITEM':
+            state = action.data;
+            return state;
+        default:
+            return state;
+    }
+}
 
 export {
     counter,
-    booklist
+    booklist,
+    bookitem
 };

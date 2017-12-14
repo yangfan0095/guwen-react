@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom';
 // import counter from './reducers';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { add, decrement,fetchBookList } from '../actions';
 import logo from '../logo.svg';
-import './home.less';
+import '../assets//home.less';
 
 class Home extends Component {
   constructor(){
@@ -43,8 +44,8 @@ const BookList = ({booklist})=>{
     {
       booklist.map((item,index) =>(
         <div className="book-list-item" key= { 'bookindex' + index}>
-          <div className="name">{item.bookName}</div>
-          <div className="detail">{item.bookDetail}</div>
+          <div  > <Link  className="name" to={`/book/${item.dbName}`}>{item.bookName} </Link> </div>
+          <div className="detail" >{item.bookDetail}</div>
         </div>
       )
       )
