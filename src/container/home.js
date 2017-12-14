@@ -12,22 +12,33 @@ class Home extends Component {
   constructor(){
 		super();
 		this.state={
-			data:null
+			data:null,
+      page:1,// 当前加载页
+      size:20,//每次请求条数
 		}
+    this.loadMore = this.loadMore.bind(this);// 加载更多
 	}
 
   addCount = () => {
     this.props.add();
   }
   componentDidMount() {
-    this.props.fetchBookList({});
+    this.props.fetchBookList({page:this.state.page,size:this.state.size});
+  }
+  loadMore(no){
+    this.props.fetchBookList({page:no,size:this.state.size});
+    this.setState({page:no});
   }
   render() {
     const props = this.props;
+    let { page } = this.state;
     return (
       <div className="home">
         <div className="title">古文目录</div>
         <BookList booklist={ props.booklist }></BookList>
+         <div className="btn-container" >
+         <a className="action" onClick={ this.loadMore.bind(this,page + 1)}> 加载更多 </a>
+        </div>
       </div>
     );
   }

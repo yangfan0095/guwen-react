@@ -23,7 +23,7 @@ const booklist = (state = [], action) => {
 
     switch (action.type) {
         case 'BOOKLIST':
-            state = action.data;
+            state =state.concat(action.data);
             return state;
         default:
             return state;

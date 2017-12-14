@@ -19,9 +19,11 @@ export const bookitem = (result) => ({
  * 获取书籍目录
  * @param {*} param 
  */
-export const fetchBookList = (param) => {
+export const fetchBookList = (params) => {
     return (dispatch, getState) => {
-        axios.get(api.url.booklist).then((res) => {
+        axios.get(api.url.booklist, {
+            params: params
+        }).then((res) => {
             dispatch(booklist(res.data.title));
         }).catch((err) => {
 
