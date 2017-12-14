@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { fetchBookItem } from '../actions';
-import  Button  from 'react-toolbox/lib/button';
 import '../assets/book.less';
 
 class Book extends Component {
   constructor(){
 		super();
 		this.state={
-			data:null
+			data:null,
+            start:1,
+            size:1
 		}
+        this.nextChapter = this.nextChapter.bind(this);
 	}
     componentDidMount() {
         let params = {
@@ -19,10 +21,25 @@ class Book extends Component {
             size:1
         };
         this.props.dispatch(fetchBookItem(params));
+    } 
+    /**
+     * 获取下一页数据
+     */
+    nextChapter(no){
+        let start = no;
+         this.props.dispatch(fetchBookItem({
+              dbName : this.props.match.params.id,
+              start:no,
+              size:this.state.size
+         }));
+        this.setState({
+            start:no
+        });
     }
 
     render(){
         let { book } = this.props;
+        let { start } = this.state;
         book = book ? book : [];
         let getChapter = (book) =>{
             if(book.length === 0){
@@ -50,7 +67,14 @@ class Book extends Component {
                           
                         ))
                 }
-                <Button label="Hello World!" />
+                <div className="btn-container" >
+                    {
+                        start > 1 ? 
+                        <a className="action" onClick={ this.nextChapter.bind(this,start - 1)}> 上一章 </a>
+                        : null
+                    }
+                    <a className="action" onClick={ this.nextChapter.bind(this,start + 1)}> 下一章 </a>
+                </div>
             </div>
         )
     }
@@ -75,6 +99,9 @@ const BookChapter = ({dataChapter}) =>{
             </div>
             <div className="content">
                 {data? filter(data.content) : null}
+            </div>
+            <div className="translate">
+                {data? filter(data.translate) : null}
             </div>
         </div>
     )
