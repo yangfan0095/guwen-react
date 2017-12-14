@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import Home from './container/home';
-import './App.css';
-
+import PropTypes from 'prop-types';
+import RouteWithSubRoutes from './components/routewithsubroutes';
 class App extends Component {
   render() {
+    window.scrollTo(0, 0);
+    const routes = this.props.routes;
     return (
       <div className="App">
-        <Home></Home>
+       {routes.map((route, i) => (
+        <RouteWithSubRoutes key={i} {...route}/>
+      ))}
       </div>
     );
   }
 }
 
+App.propTypes = {
+  children: PropTypes.element,
+};
 export default App;

@@ -7,13 +7,30 @@ import {
 import App from '../App';
 import Home from '../container/home';
 import BookItem from '../container/book';
+import RouteWithSubRoutes from '../components/routewithsubroutes';
+
+
+const routes = [
+  {
+    path:'/',
+    component:App,
+    routes:[
+      {path:'/home',component:Home},
+      {path:'/book/:id',component:BookItem}
+    ]
+  }
+];
+
 
 
   const BasicExample = () => (
     <Router>
         <div>
-        <Route exact path="/" component={App}/>
-        <Route path="/book/:id" component={BookItem}/>
+          {
+            routes.map((route, i) => (
+                <RouteWithSubRoutes key={i} {...route}/>
+            ))
+          }
         </div>
     </Router>
 )

@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
+import 'semantic-ui-css/semantic.min.css';
 // import './toolbox/theme.css';
 // import theme from './toolbox/theme';
 
@@ -12,6 +13,7 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import BasicApp from './router';
+import ScrollIntoView from './components/scrollintoview';
 import './assets/common.less';
 
 

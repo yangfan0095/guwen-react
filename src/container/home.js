@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 // import counter from './reducers';
 import { connect } from 'react-redux';
+import { Button } from 'semantic-ui-react'
 import axios from 'axios';
 import { add, decrement,fetchBookList } from '../actions';
 import logo from '../logo.svg';
@@ -37,7 +38,7 @@ class Home extends Component {
         <div className="title">古文目录</div>
         <BookList booklist={ props.booklist }></BookList>
          <div className="btn-container" >
-         <a className="action" onClick={ this.loadMore.bind(this,page + 1)}> 加载更多 </a>
+         <a className="action" onClick={ this.loadMore.bind(this,page + 1)} > 加载更多... </a>
         </div>
       </div>
     );
