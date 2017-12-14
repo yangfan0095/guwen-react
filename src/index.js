@@ -4,7 +4,6 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
-import 'semantic-ui-css/semantic.min.css';
 // import './toolbox/theme.css';
 // import theme from './toolbox/theme';
 
