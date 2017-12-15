@@ -2,6 +2,8 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Route,
+  Redirect,
+  Switch,
   Link
 } from 'react-router-dom';
 import App from '../App';
@@ -16,7 +18,8 @@ const routes = [
     component:App,
     routes:[
       {path:'/home',component:Home},
-      {path:'/book/:id',component:BookItem}
+      {path:'/book/:id',component:BookItem},
+      {path: '/',component: Home}
     ]
   }
 ];

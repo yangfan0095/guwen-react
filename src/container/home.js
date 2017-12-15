@@ -34,7 +34,7 @@ class Home extends Component {
     const props = this.props;
     let { page } = this.state;
     return (
-      <div className="home">
+        <div className="home">
         <div className="title">古文目录</div>
         <BookList booklist={ props.booklist }></BookList>
          <div className="btn-container" >

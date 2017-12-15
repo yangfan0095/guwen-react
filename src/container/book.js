@@ -94,7 +94,7 @@ const BookChapter = ({dataChapter}) =>{
         <div className="chapter-container">
             <div className="title">{data ? data.name : null}</div>
             <div className="book-info">
-                <span>{ data ? data.chapter : null}</span>
+                <span className="title-name">{ data ? data.chapter : null}</span>
                 <span>作者 : { data ? data.author : null}</span>
             </div>
             <div className="content">
