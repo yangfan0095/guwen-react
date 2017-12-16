@@ -19,7 +19,7 @@ const routes = [
     routes:[
       {path:'/home',component:Home},
       {path:'/book/:id',component:BookItem},
-      {path: '/',component: Home}
+      // {path: '/',component: Home}
     ]
   }
 ];

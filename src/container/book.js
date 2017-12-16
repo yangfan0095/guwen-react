@@ -97,7 +97,7 @@ const BookChapter = ({dataChapter}) =>{
                 <span className="title-name">{ data ? data.chapter : null}</span>
                 <span>作者 : { data ? data.author : null}</span>
             </div>
-            <div className="content">
+            <div className="book-content">
                 {data? filter(data.content) : null}
             </div>
             <div className="translate">
