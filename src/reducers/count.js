@@ -19,21 +19,42 @@ const counter = (state = 10, action) => {
             return state;
     }
 };
-const booklist = (state = [], action) => {
+// 默认分页数据
+const defaultPagination = {
+    "total": 0,
+    "current_page": 1,
+    "total_page": 0,
+    "page_size": 14
+};
+const booklist = (state = {
+    list: [],
+    pagination: defaultPagination
+}, action) => {
 
     switch (action.type) {
         case 'BOOKLIST':
-            state =state.concat(action.data);
+            let res = {
+                pagination: action.data ? action.data.pagination : defaultPagination,
+                list: action.data ? state.list.concat(action.data.list) : state.list
+            };
+            state = res;
             return state;
         default:
             return state;
     }
 }
-const bookitem = (state = [], action) => {
-
+// 具体书籍 信息
+const bookitem = (state = {
+    list: [],
+    pagination: defaultPagination
+}, action) => {
     switch (action.type) {
         case 'BOOKITEM':
-            state = action.data;
+            let res = {
+                pagination: action.data ? action.data.pagination : defaultPagination,
+                list: action.data ? action.data.list : []
+            };
+            state = res;
             return state;
         default:
             return state;

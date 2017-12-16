@@ -4,7 +4,9 @@ import RouteWithSubRoutes from './components/routewithsubroutes';
 import Header from './components/header';
 import './assets/app.less';
 class App extends Component {
+
   render() {
+    let children = React.childrens;
     window.scrollTo(0, 0);
     const routes = this.props.routes;
     return (

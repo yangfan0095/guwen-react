@@ -108,12 +108,15 @@ const BookChapter = ({dataChapter}) =>{
 }
 
 Book.propTypes= {
-  book:PropTypes.array.isRequired
+  book:PropTypes.array.isRequired,
+  pagination:PropTypes.object.isRequired,
 }
 
 
 const mapStateToProps = (state) => ({
-  book: state.bookitem,
+  book: state.bookitem.list,
+  pagination:state.bookitem.pagination
+
 });
 export default connect(
   mapStateToProps,

@@ -10,6 +10,10 @@ export const booklist = (result) => ({
     type: 'BOOKLIST',
     data: result
 });
+// export const booklistPage = (pagination) => ({
+//     type: 'BOOKLISTPAGE',
+//     data: pagination
+// });
 export const bookitem = (result) => ({
     type: 'BOOKITEM',
     data: result
@@ -24,7 +28,7 @@ export const fetchBookList = (params) => {
         axios.get(api.url.booklist, {
             params: params
         }).then((res) => {
-            dispatch(booklist(res.data.title));
+            dispatch(booklist(res.data.result));
         }).catch((err) => {
 
         })

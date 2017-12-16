@@ -32,6 +32,7 @@ class Home extends Component {
   }
   render() {
     const props = this.props;
+    let { list ,pagination} = this.props;
     let { page } = this.state;
     return (
         <div className="home">
@@ -67,7 +68,8 @@ const BookList = ({booklist})=>{
 }
 const mapStateToProps = (state) => ({
   count: state.counter,
-  booklist:state.booklist
+  booklist:state.booklist.list,
+  pagination:state.booklist.pagination
 });
 const mapDispatchToProps = {
   add: add,
@@ -78,10 +80,11 @@ const mapDispatchToProps = {
 
 Home.propTypes = {
   count: PropTypes.number.isRequired,
-  booklist:PropTypes.array.isRequired
+  booklist:PropTypes.array.isRequired,
+  pagination:PropTypes.object.isRequired,
 }
 BookList.propTypes= {
-  booklist:PropTypes.array.isRequired
+  booklist:PropTypes.array.isRequired,
 }
 
 export default connect(
