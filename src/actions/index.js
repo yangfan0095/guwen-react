@@ -10,10 +10,6 @@ export const booklist = (result) => ({
     type: 'BOOKLIST',
     data: result
 });
-// export const booklistPage = (pagination) => ({
-//     type: 'BOOKLISTPAGE',
-//     data: pagination
-// });
 export const bookitem = (result) => ({
     type: 'BOOKITEM',
     data: result

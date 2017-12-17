@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { fetchBookItem } from '../actions';
+import * as formatContent from '../utils/genhtml';
 import '../assets/book.less';
 
 class Book extends Component {
@@ -79,6 +80,11 @@ class Book extends Component {
         )
     }
 }
+// 生成Html
+const getWbContent = (content) => {
+  return <div dangerouslySetInnerHTML={formatContent.createMarkup(content)}/>;
+}
+
 
 //
 const BookChapter = ({dataChapter}) =>{
@@ -98,10 +104,17 @@ const BookChapter = ({dataChapter}) =>{
                 <span>作者 : { data ? data.author : null}</span>
             </div>
             <div className="book-content">
-                {data? filter(data.content) : null}
+                <div className="content-title">正文：</div>
+                {data? getWbContent(data.content) : null}
             </div>
             <div className="translate">
-                {data? filter(data.translate) : null}
+                 
+                {data? 
+                <div>
+                    <div className="content-title">译文：</div>
+                    {getWbContent(data.translate) }
+                </div>
+                : null}
             </div>
         </div>
     )
