@@ -14,6 +14,10 @@ export const bookitem = (result) => ({
     type: 'BOOKITEM',
     data: result
 });
+export const chapterlist = (result) => ({
+    type: 'CHAPTERLIST',
+    data: result
+});
 
 /**
  * 获取书籍目录
@@ -40,6 +44,21 @@ export const fetchBookItem = (params) => {
             params: params
         }).then((res) => {
             dispatch(bookitem(res.data.result));
+        }).catch((err) => {
+
+        })
+    }
+}
+/**
+ * 获取数据章节liebiao0
+ * @param {*} param dbName 书籍名 start  开始章节 size 一页显示条数
+ */
+export const fetchChapterList = (params) => {
+    return (dispatch, getState) => {
+        axios.get(api.url.chapterlist, {
+            params: params
+        }).then((res) => {
+            dispatch(chapterlist(res.data.result));
         }).catch((err) => {
 
         })

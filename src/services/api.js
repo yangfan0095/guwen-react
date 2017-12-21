@@ -8,7 +8,8 @@
      url: {
          book: `${base}/book`,
          booklist: `${base}/booklist`,
-         bookitem:`${base}/book`
+         bookitem:`${base}/book`,
+         chapterlist:`${base}/chapter`
      }
 
  }

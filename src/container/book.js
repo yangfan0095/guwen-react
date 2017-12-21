@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { fetchBookItem } from '../actions';
+import { fetchBookItem ,fetchChapterList} from '../actions';
 import * as formatContent from '../utils/genhtml';
 import '../assets/book.less';
 
@@ -11,7 +11,8 @@ class Book extends Component {
 		this.state={
 			data:null,
             start:1,
-            size:1
+            size:1,
+            chapter:null,//当前章节名称
 		}
         this.nextChapter = this.nextChapter.bind(this);
 	}
@@ -22,6 +23,7 @@ class Book extends Component {
             size:1
         };
         this.props.dispatch(fetchBookItem(params));
+        this.props.dispatch(fetchChapterList({ dbName : this.props.match.params.id }));
     } 
     /**
      * 获取下一页数据
@@ -53,7 +55,6 @@ class Book extends Component {
                     {
                         book.map( (item, index ) =>{
                             <span>{ item }</span>
-                            {/*<BookChapter dataChapter={ item } key={ 'bookName' + index }></BookChapter>*/}
                         })
                     }
                 </div>
@@ -68,6 +69,7 @@ class Book extends Component {
                           
                         ))
                 }
+                <div className="chapter-list"></div>
                 <div className="btn-container" >
                     {
                         start > 1 ? 
@@ -123,13 +125,14 @@ const BookChapter = ({dataChapter}) =>{
 Book.propTypes= {
   book:PropTypes.array.isRequired,
   pagination:PropTypes.object.isRequired,
+  chapterlist:PropTypes.array.isRequired
 }
 
 
 const mapStateToProps = (state) => ({
   book: state.bookitem.list,
-  pagination:state.bookitem.pagination
-
+  pagination:state.bookitem.pagination,
+  chapterlist:state.chapterlist
 });
 export default connect(
   mapStateToProps,
