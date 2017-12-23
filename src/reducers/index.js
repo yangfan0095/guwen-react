@@ -4,13 +4,15 @@ import {
 import {
     counter,
     booklist,
-    bookitem
+    bookitem,
+    chapterlist
 } from './count'
 
 const appReducer = combineReducers({
     counter,
     booklist,
-    bookitem
+    bookitem,
+    chapterlist
 })
 
 export default appReducer

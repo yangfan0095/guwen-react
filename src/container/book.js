@@ -41,25 +41,11 @@ class Book extends Component {
     }
 
     render(){
-        let { book } = this.props;
+        let { book,chapterlist } = this.props;
         let { start } = this.state;
-        book = book ? book : [];
-        let getChapter = (book) =>{
-            if(book.length === 0){
-                return <div>123</div>
-            }
-            console.log(book);
-            book= [1,3,4]
-            return (
-                <div>
-                    {
-                        book.map( (item, index ) =>{
-                            <span>{ item }</span>
-                        })
-                    }
-                </div>
-            )
-        }
+        let chapterSetList = [...new Set(chapterlist)];
+        console.log(chapterSetList);
+        console.log(new Set(chapterlist));
         return (
             <div className="book-container">
                {
@@ -69,7 +55,9 @@ class Book extends Component {
                           
                         ))
                 }
-                <div className="chapter-list"></div>
+                <div className="chapter-list">
+                  {/*<ChapterList list={chapterSetList }></ChapterList>*/}
+                </div>
                 <div className="btn-container" >
                     {
                         start > 1 ? 
@@ -87,7 +75,19 @@ const getWbContent = (content) => {
   return <div dangerouslySetInnerHTML={formatContent.createMarkup(content)}/>;
 }
 
-
+// 章节列表
+ const ChapterList = ({list}) =>{
+            return (
+                <div>
+                    {
+                        list.map( (item, index ) =>(
+                            <span key={'chapter' + index}>{ item.chapter }</span>
+                        ))
+                    }
+                </div>
+            )
+        }
+        
 //
 const BookChapter = ({dataChapter}) =>{
     let data = dataChapter;
