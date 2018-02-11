@@ -36,7 +36,7 @@ export const fetchBookList = (params) => {
 }
 /**
  * 获取数据具体章节内容
- * @param {*} param dbName 书籍名 start  开始章节 size 一页显示条数
+ * @param {*} param key 书籍名 start  开始章节 size 一页显示条数
  */
 export const fetchBookItem = (params) => {
     return (dispatch, getState) => {
@@ -51,7 +51,7 @@ export const fetchBookItem = (params) => {
 }
 /**
  * 获取数据章节liebiao0
- * @param {*} param dbName 书籍名 start  开始章节 size 一页显示条数
+ * @param {*} param key 书籍名 start  开始章节 size 一页显示条数
  */
 export const fetchChapterList = (params) => {
     return (dispatch, getState) => {

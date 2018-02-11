@@ -57,7 +57,7 @@ const BookList = ({booklist})=>{
     {
       booklist.map((item,index) =>(
         <div className="book-list-item" key= { 'bookindex' + index}>
-          <div  > <Link  className="name" to={`/book/${item.dbName}`}>{item.bookName} </Link> </div>
+          <div  > <Link  className="name" to={`/book/${item.key}`}>{item.bookName} </Link> </div>
           <div className="detail" >{item.bookDetail}</div>
         </div>
       )

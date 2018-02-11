@@ -18,12 +18,12 @@ class Book extends Component {
 	}
     componentDidMount() {
         let params = {
-            dbName : this.props.match.params.id,
+            key : this.props.match.params.id,
             start:1,
             size:1
         };
         this.props.dispatch(fetchBookItem(params));
-        this.props.dispatch(fetchChapterList({ dbName : this.props.match.params.id }));
+        this.props.dispatch(fetchChapterList({ key : this.props.match.params.id }));
     } 
     /**
      * 获取下一页数据
@@ -31,7 +31,7 @@ class Book extends Component {
     nextChapter(no){
         let start = no;
          this.props.dispatch(fetchBookItem({
-              dbName : this.props.match.params.id,
+              key : this.props.match.params.id,
               start:no,
               size:this.state.size
          }));
