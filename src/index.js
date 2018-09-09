@@ -6,6 +6,7 @@ import reducer from './reducers';
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
 // import './toolbox/theme.css';
 // import theme from './toolbox/theme';
+// test this git
 
 import { Provider } from 'react-redux';
 import './index.css';
@@ -17,12 +18,14 @@ import './assets/common.less';
 
 
 const store = createStore(
-  reducer,applyMiddleware(thunk)
+    reducer, applyMiddleware(thunk)
 );
 
 
-ReactDOM.render(
-<Provider store={store}>
-    <BasicApp />
-  </Provider>, document.getElementById('root'));
-registerServiceWorker();
+ReactDOM.render( <
+        Provider store = { store } >
+        <
+        BasicApp / >
+        <
+        /Provider>, document.getElementById('root'));
+        registerServiceWorker();
